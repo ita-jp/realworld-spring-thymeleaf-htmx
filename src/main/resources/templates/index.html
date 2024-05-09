@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout.html}">
 <head>
@@ -32,25 +31,31 @@
 
                     <div class="article-preview" th:each="article: ${articleList}" th:object="${article}">
                         <div class="article-meta">
-                            <a th:href="@{/profile/{username}(username=*{author.username})}"><img th:src="*{author.image}"/></a>
+                            <a th:href="@{/profile/{username}(username=*{author.username})}"><img
+                                    th:src="*{author.image}"/></a>
                             <div class="info">
-                                <a th:href="@{/profile/{username}(username=*{author.username})}" class="author">Eric Simons</a>
-                                <span class="date" th:text="*{#temporals.format(updatedAt, 'MMM d, yyyy')}">January 20th</span>
+                                <a th:href="@{/profile/{username}(username=*{author.username})}"
+                                   th:text="*{author.username}" class="author"></a>
+                                <span class="date" th:text="*{#temporals.format(updatedAt, 'MMM d, yyyy')}"></span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm pull-xs-right">
                                 <i class="ion-heart"></i>&nbsp;[[*{favoritesCount}]]
                             </button>
                         </div>
                         <a th:href="@{/articles/{slug}(slug=*{slug})}" class="preview-link">
-                            <h1 th:text="*{title}">How to build webapps that scale</h1>
-                            <p th:text="*{description}">This is the description for the post.</p>
+                            <h1 th:text="*{title}"></h1>
+                            <p th:text="*{description}"></p>
                             <span>Read more...</span>
+                            <ul class="tag-list">
+                                <li class="tag-default tag-pill tag-outline"
+                                    th:each="tag : *{tagList}" th:text="${tag}"></li>
+                            </ul>
                         </a>
                     </div>
 
                     <div class="article-preview">
                         <div class="article-meta">
-                            <a href="profile.html"><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
+                            <a href="profile.html"><img src="http://i.imgur.com/N4VcUeJ.jpg"/></a>
                             <div class="info">
                                 <a href="" class="author">Albert Pai</a>
                                 <span class="date">January 20th</span>
