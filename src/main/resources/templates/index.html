@@ -30,20 +30,20 @@
                         </ul>
                     </div>
 
-                    <div class="article-preview">
+                    <div class="article-preview" th:each="article: ${articleList}" th:object="${article}">
                         <div class="article-meta">
-                            <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+                            <a th:href="@{/profile/{username}(username=*{author.username})}"><img th:src="*{author.image}"/></a>
                             <div class="info">
-                                <a href="" class="author">Eric Simons</a>
-                                <span class="date">January 20th</span>
+                                <a th:href="@{/profile/{username}(username=*{author.username})}" class="author">Eric Simons</a>
+                                <span class="date" th:text="*{#temporals.format(updatedAt, 'MMM d, yyyy')}">January 20th</span>
                             </div>
                             <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                                <i class="ion-heart"></i> 29
+                                <i class="ion-heart"></i>&nbsp;[[*{favoritesCount}]]
                             </button>
                         </div>
-                        <a href="" class="preview-link">
-                            <h1>How to build webapps that scale</h1>
-                            <p>This is the description for the post.</p>
+                        <a th:href="@{/articles/{slug}(slug=*{slug})}" class="preview-link">
+                            <h1 th:text="*{title}">How to build webapps that scale</h1>
+                            <p th:text="*{description}">This is the description for the post.</p>
                             <span>Read more...</span>
                         </a>
                     </div>
