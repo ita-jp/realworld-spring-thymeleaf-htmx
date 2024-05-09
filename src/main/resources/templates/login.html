@@ -13,11 +13,11 @@
                 <div class="col-md-6 offset-md-3 col-xs-12">
                     <h1 class="text-xs-center">Sign in</h1>
                     <p class="text-xs-center">
-                        <a href="">Need an account?</a>
+                        <a th:href="@{/register}">Need an account?</a>
                     </p>
 
-                    <ul class="error-messages">
-                        <li>That email is already taken</li>
+                    <ul class="error-messages" th:if="${param.get('error') != null}">
+                        <li>email or password is invalid</li>
                     </ul>
 
                     <form th:action="@{/login}" th:method="post">
@@ -25,7 +25,8 @@
                             <input class="form-control form-control-lg" type="text" placeholder="Email" name="email"/>
                         </fieldset>
                         <fieldset class="form-group">
-                            <input class="form-control form-control-lg" type="password" placeholder="Password" name="password"/>
+                            <input class="form-control form-control-lg" type="password" placeholder="Password"
+                                   name="password"/>
                         </fieldset>
                         <button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
                     </form>
