@@ -13,33 +13,34 @@
                 <div class="col-md-6 offset-md-3 col-xs-12">
                     <h1 class="text-xs-center">Your Settings</h1>
 
-                    <form>
+                    <form th:action="@{/users/me}" th:method="put" th:object="${user}">
                         <fieldset>
                             <fieldset class="form-group">
-                                <input class="form-control" type="text" placeholder="URL of profile picture"/>
+                                <input class="form-control" type="text" placeholder="URL of profile picture" th:field="*{image}"/>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input class="form-control form-control-lg" type="text" placeholder="Your Name"/>
+                                <input class="form-control form-control-lg" type="text" placeholder="Your Name" th:field="*{username}"/>
                             </fieldset>
                             <fieldset class="form-group">
-              <textarea
-                      class="form-control form-control-lg"
-                      rows="8"
-                      placeholder="Short bio about you"
-              ></textarea>
+                                <textarea
+                                        class="form-control form-control-lg"
+                                        rows="8"
+                                        placeholder="Short bio about you"
+                                        th:field="*{bio}"
+                                ></textarea>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input class="form-control form-control-lg" type="text" placeholder="Email"/>
+                                <input class="form-control form-control-lg" type="text" placeholder="Email" th:field="*{email}"/>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input class="form-control form-control-lg" type="password" placeholder="Password"/>
+                                <input class="form-control form-control-lg" type="password" placeholder="Password" th:field="*{password}"/>
                             </fieldset>
                             <button class="btn btn-lg btn-primary pull-xs-right">Update Settings</button>
                         </fieldset>
                     </form>
                     <hr/>
                     <form th:action="@{/logout}" method="post">
-                        <button class="btn btn-outline-danger" >Or click here to logout.</button>
+                        <button class="btn btn-outline-danger">Or click here to logout.</button>
                     </form>
                 </div>
             </div>

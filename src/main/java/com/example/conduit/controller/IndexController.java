@@ -19,11 +19,6 @@ public class IndexController {
         return "editor";
     }
 
-    @GetMapping("/settings")
-    public String settings() {
-        return "settings";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
