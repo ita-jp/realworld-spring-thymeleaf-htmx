@@ -32,6 +32,9 @@ public class UserController {
 
     @GetMapping("/me")
     public String showMe(Model model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
         userService.findByEmail(principal.getName())
                 .ifPresentOrElse(
                         user -> model.addAttribute("user", user),

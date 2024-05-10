@@ -2,6 +2,7 @@ package com.example.conduit.service;
 
 import com.example.conduit.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,19 +37,19 @@ public class UserService {
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        if (email != null) {
+        if (Strings.isNotEmpty(email)) {
             user.setEmail(email);
         }
-        if (username != null) {
+        if (Strings.isNotEmpty(username)) {
             user.setUsername(username);
         }
-        if (password != null) {
+        if (Strings.isNotEmpty(password)) {
             user.setPassword(passwordEncoder.encode(password));
         }
-        if (bio != null) {
+        if (Strings.isNotEmpty(bio)) {
             user.setBio(bio);
         }
-        if (image != null) {
+        if (Strings.isNotEmpty(image)) {
             user.setImage(image);
         }
 
