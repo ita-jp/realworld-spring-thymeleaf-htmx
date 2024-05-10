@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,9 +22,15 @@ public class ArticleService {
                 title,
                 description,
                 body,
+                LocalDateTime.now(),
+                LocalDateTime.now(),
                 author,
                 List.of() // TODO tag
         );
         return articleRepository.save(newArticle);
+    }
+
+    public List<Article> findAll() {
+        return articleRepository.findAll();
     }
 }

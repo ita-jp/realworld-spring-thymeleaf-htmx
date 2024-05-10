@@ -39,29 +39,6 @@
                     <div class="article-preview" th:if="${#lists.isEmpty(articleList)}">
                         No articles are here... yet.
                     </div>
-                    <div class="article-preview" th:fragment="article-preview" th:each="article: ${articleList}" th:object="${article}">
-                        <div class="article-meta">
-                            <a th:href="@{/profile/{username}(username=*{author.username})}"><img
-                                    th:src="*{author.image}"/></a>
-                            <div class="info">
-                                <a th:href="@{/profile/{username}(username=*{author.username})}"
-                                   th:text="*{author.username}" class="author"></a>
-                                <span class="date" th:text="*{#temporals.format(updatedAt, 'MMM d, yyyy')}"></span>
-                            </div>
-                            <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                                <i class="ion-heart"></i>&nbsp;[[*{favoritesCount}]]
-                            </button>
-                        </div>
-                        <a th:href="@{/articles/{slug}(slug=*{slug})}" class="preview-link">
-                            <h1 th:text="*{title}"></h1>
-                            <p th:text="*{description}"></p>
-                            <span>Read more...</span>
-                            <ul class="tag-list">
-                                <li class="tag-default tag-pill tag-outline"
-                                    th:each="tag : *{tagList}" th:text="${tag}"></li>
-                            </ul>
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col-md-3">

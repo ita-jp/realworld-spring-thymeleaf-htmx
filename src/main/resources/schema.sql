@@ -1,14 +1,14 @@
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (
     id       LONG PRIMARY KEY AUTO_INCREMENT,
     email    VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
-    image    VARCHAR(255) NOT NULL,
-    bio      VARCHAR(255) NOT NULL
+    image    VARCHAR(255),
+    bio      VARCHAR(255)
 );
 
-CREATE TABLE articles
+CREATE TABLE IF NOT EXISTS articles
 (
     id          LONG PRIMARY KEY AUTO_INCREMENT,
     author      LONG         NOT NULL,
@@ -20,13 +20,13 @@ CREATE TABLE articles
     FOREIGN KEY (author) REFERENCES users (id)
 );
 
-CREATE TABLE tags
+CREATE TABLE IF NOT EXISTS tags
 (
     id   LONG PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE article_tags
+CREATE TABLE IF NOT EXISTS article_tags
 (
     article_id LONG,
     tag_id     LONG,

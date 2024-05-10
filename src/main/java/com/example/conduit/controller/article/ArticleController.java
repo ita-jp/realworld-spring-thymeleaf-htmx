@@ -3,6 +3,7 @@ package com.example.conduit.controller.article;
 import com.example.conduit.controller.profile.ProfileDTO;
 import com.example.conduit.security.CustomUserDetails;
 import com.example.conduit.service.article.ArticleService;
+import com.example.conduit.service.tag.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -34,7 +36,27 @@ public class ArticleController {
 
     @GetMapping
     public String list(Model model) throws URISyntaxException, MalformedURLException {
-        model.addAttribute("articleList", List.of(
+        var articles = articleService.findAll()
+                .stream().map(article -> new ArticlePreviewDTO(
+                        "slug",
+                        article.getTitle(),
+                        article.getDescription(),
+                        article.getBody(),
+                        article.getTagList().stream().map(Tag::getName).toList(),
+                        article.getCreatedAt(),
+                        article.getUpdatedAt(),
+                        false,
+                        0,
+                        new ProfileDTO(
+                                article.getAuthor().getUsername(),
+                                null,
+                                article.getAuthor().getImage(),
+                                false
+                        ))
+                )
+                .toList();
+
+        var mockList = List.of(
                 new ArticlePreviewDTO(
                         "how-to-train-your-dragon",
                         "Ever wonder how?",
@@ -48,7 +70,7 @@ public class ArticleController {
                         new ProfileDTO(
                                 "Eric Simons",
                                 null,
-                                new URI("http://i.imgur.com/Qr71crq.jpg").toURL(),
+                                "http://i.imgur.com/Qr71crq.jpg",
                                 false
                         )
                 ),
@@ -65,7 +87,7 @@ public class ArticleController {
                         new ProfileDTO(
                                 "Eric Simons",
                                 null,
-                                new URI("http://i.imgur.com/Qr71crq.jpg").toURL(),
+                                "http://i.imgur.com/Qr71crq.jpg",
                                 false
                         )
                 ),
@@ -82,13 +104,18 @@ public class ArticleController {
                         new ProfileDTO(
                                 "Eric Simons",
                                 null,
-                                new URI("http://i.imgur.com/Qr71crq.jpg").toURL(),
+                                "http://i.imgur.com/Qr71crq.jpg",
                                 false
                         )
                 )
-        ));
+        );
 
-        return "index :: article-preview";
+        var articleList = new LinkedList<>();
+        articleList.addAll(articles);
+        articleList.addAll(mockList);
+        model.addAttribute("articleList", articleList);
+
+        return "article/article-preview";
     }
 
     @PostMapping
