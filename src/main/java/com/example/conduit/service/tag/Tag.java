@@ -1,5 +1,4 @@
-package com.example.conduit.service;
-
+package com.example.conduit.service.tag;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,11 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tags")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +18,6 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String username;
+    private String name;
 
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column
-    private String image;
-
-    @Column
-    private String bio;
 }
