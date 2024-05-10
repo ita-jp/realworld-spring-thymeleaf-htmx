@@ -30,19 +30,18 @@
                         </ul>
                     </div>
 
-                    <div hx-get="/articles" hx-trigger="load">
-                        <div class="article-preview">
-                            Loading articles...
-                        </div>
-                    </div>
-
-                    <div class="article-preview" th:if="${#lists.isEmpty(articleList)}">
-                        No articles are here... yet.
+                    <div class="article-preview" hx-get="/articles" hx-trigger="load" hx-swap="outerHTML">
+                        Loading articles...
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="sidebar" hx-get="/tags" hx-trigger="load">
+                    <div class="sidebar">
+                        <p>Popular Tags</p>
+
+                        <div class="tag-list" hx-get="/popular-tags" hx-trigger="load" hx-swap="outerHTML">
+                            Loading tags...
+                        </div>
                     </div>
                 </div>
             </div>
