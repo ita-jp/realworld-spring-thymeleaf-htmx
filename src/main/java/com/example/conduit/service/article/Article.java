@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,6 +23,10 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
+
+    // T
+    @Column(nullable = false)
+    private String slug;
 
     @Column(nullable = false)
     private String title;
@@ -50,4 +55,6 @@ public class Article {
     )
     private List<Tag> tagList;
 
+    @Formula("(SELECT COUNT(a.article_id) FROM article_favorites a WHERE a.article_id = id)")
+    private Long favoritesCount;
 }

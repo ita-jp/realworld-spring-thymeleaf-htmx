@@ -10,11 +10,11 @@ VALUES (1, 'user1@example.com', '{bcrypt}$2a$10$e28zvqlPjcpL2bn8PPahQeauHjklvTv4
 DELETE
 FROM articles;
 
-INSERT INTO articles (id, author, title, description, body, created_at, updated_at)
-VALUES (1, 1, 'Article 1', 'Description 1', 'Body 1', '2020-01-01 00:00:00', '2020-01-01 00:00:00')
-     , (2, 1, 'Article 2', 'Description 2', 'Body 2', '2020-01-02 00:00:00', '2020-01-02 00:00:00')
-     , (3, 2, 'Article 3', 'Description 3', 'Body 3', '2020-01-03 00:00:00', '2020-01-03 00:00:00')
-     , (4, 2, 'Article 4', 'Description 4', 'Body 4', '2020-01-04 00:00:00', '2020-01-04 00:00:00')
-     , (5, 3, 'Article 5', 'Description 5', 'Body 5', '2020-01-05 00:00:00', '2020-01-05 00:00:00')
-     , (6, 3, 'Article 6', 'Description 6', 'Body 6', '2020-01-06 00:00:00', '2020-01-06 00:00:00')
+INSERT INTO articles (id, author, slug, title, description, body, created_at, updated_at)
+VALUES (1, 1, 'slug_11', 'Article 1', 'Description 1', 'Body 1', '2020-01-01 00:00:00', '2020-01-01 00:00:00')
+     , (2, 1, 'slug_21', 'Article 2', 'Description 2', 'Body 2', '2020-01-02 00:00:00', '2020-01-02 00:00:00')
+     , (3, 2, 'slug_32', 'Article 3', 'Description 3', 'Body 3', '2020-01-03 00:00:00', '2020-01-03 00:00:00')
+     , (4, 2, 'slug_42', 'Article 4', 'Description 4', 'Body 4', '2020-01-04 00:00:00', '2020-01-04 00:00:00')
+     , (5, 3, 'slug_53', 'Article 5', 'Description 5', 'Body 5', '2020-01-05 00:00:00', '2020-01-05 00:00:00')
+     , (6, 3, 'slug_63', 'Article 6', 'Description 6', 'Body 6', '2020-01-06 00:00:00', '2020-01-06 00:00:00')
 ;
